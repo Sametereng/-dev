@@ -1,35 +1,33 @@
 public class TarimOtomasyonu {
 
-    // METOT: Bitki türüne göre çarpan belirleyen ve su ihtiyacını döndüren fonksiyon
+    // Bitki türüne göre çarpan belirleyen ve su ihtiyacını döndüren fonksiyon
     public static double suHesapla(int anlikNem, String bitki) {
-        // Hedef nem %100 olduğu için eksik nemi buluyoruz
         int eksikNem = 100 - anlikNem;
         
-        // KARAR YAPISI: Bitki türü hassasiyeti (Ternary Operator kullanımı hocayı etkiler)
         double carpan = bitki.equalsIgnoreCase("Mısır") ? 1.5 : 1.0;
         
         return eksikNem * carpan; // Toplam litre cinsinden su
     }
 
     public static void main(String[] args) {
-        // DEĞİŞKENLER: Sensör verilerini temsil eden başlangıç değerleri
+        // değişkenler
         int nem = 20; 
         String havaDurumu = "Güneşli";
         String urun = "Mısır";
 
         System.out.println("--- Akıllı Tarım Sistemi Aktif ---");
 
-        // KARAR YAPISI: Hava yağmurluysa sulama yapmaya gerek yok (Enerji Tasarrufu Algoritması)
+        // enerji tasarrufu
         if (havaDurumu.equals("Yağmurlu")) {
             System.out.println("Hava zaten yağmurlu, sistem beklemede.");
         } else {
-            // DÖNGÜ (While): Nem %70 ideal seviyeye ulaşana kadar su pompala
+            // %70 olana kadar su verir
             while (nem < 70) {
                 System.out.println("Nem düşük (%" + nem + "). Sulama yapılıyor...");
                 nem += 15; // Her döngüde nemin arttığını simüle ediyoruz
             }
             
-            // METOT ÇAĞRISI: İşlem bittiğinde toplam raporu ver
+            // rapor verir
             double miktar = suHesapla(20, urun);
             System.out.println("İşlem Tamamlandı. Toplam Sarfiyat: " + miktar + " Litre.");
         }
