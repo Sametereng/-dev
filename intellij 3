@@ -1,41 +1,40 @@
-// SINIF YAPISI: Her kargo paketi bir nesnedir
+// KARGOLAR
 class KargoPaketi {
-    double desi;      // Ağırlık ve hacim birimi
-    int mesafeKodu;   // 1: Şehir içi, 2: Şehirler arası, 3: Uluslararası
+    double desi;      
+    int mesafeKodu;   
 
-    // Constructor (Yapıcı Metot): Nesne oluşturulurken verileri alır
+    // veri alma
     public KargoPaketi(double desi, int mesafeKodu) {
         this.desi = desi;
         this.mesafeKodu = mesafeKodu;
     }
 
-    // METOT: Ücret hesaplayan fonksiyon
+    // hesap döngüsü
     public double fiyatHesapla() {
         double birimFiyat = 25.0;
         double toplam;
 
-        // KARAR YAPISI: Mesafeye göre fiyatı katla
+        // mesafeye göre fiyat
         if (mesafeKodu == 3) {
-            toplam = desi * birimFiyat * 5; // Uluslararası 5 katı
+            toplam = desi * birimFiyat * 5; // Uluslararası 5
         } else if (mesafeKodu == 2) {
-            toplam = desi * birimFiyat * 2; // Şehirler arası 2 katı
+            toplam = desi * birimFiyat * 2; // Şehirler arası 2
         } else {
-            toplam = desi * birimFiyat;     // Şehir içi standart
+            toplam = desi * birimFiyat;     // Şehir içi normal
         }
         return toplam;
     }
-}
+}.
 
 public class LojistikSistemi {
     public static void main(String[] args) {
         System.out.println("--- Günlük Sevkiyat Listesi ---");
 
-        // DÖNGÜ (For): Günlük 3 farklı kargonun fiyatını otomatik hesapla
+        // günlük 3 farklı kargonun fiyatını otomatik hesaplar
         for (int i = 1; i <= 3; i++) {
-            // Nesne oluşturma (Her döngüde yeni bir paket nesnesi)
             KargoPaketi p = new KargoPaketi(i * 1.5, i); 
             
-            // Metot kullanarak sonucu ekrana bas
+            // ekrana bastırma kodu
             System.out.println(i + ". Kargonun Ücreti: " + p.fiyatHesapla() + " TL");
         }
     }
