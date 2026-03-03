@@ -1,0 +1,45 @@
+public class KarakterSistemi {
+    // DEĞİŞKENLER (Sınıf düzeyinde)
+    static int enerji = 100;
+    static int seviye = 1;
+
+    // METOT: Savaşma fonksiyonu
+    public static void savas() {
+        if (enerji >= 20) {
+            enerji -= 20; // Her savaş 20 enerji götürür
+            System.out.println("Savaşıldı! Kalan Enerji: " + enerji);
+        } else {
+            System.out.println("Enerji çok düşük, savaşamazsın!");
+        }
+    }
+
+    public static void main(String[] args) {
+        int xp = 0;
+
+        System.out.println("--- Macera Başlıyor ---");
+
+        // DÖNGÜ (While): Karakter 3. seviyeye ulaşana kadar devam et
+        while (seviye < 3) {
+            savas(); // Metot çağrısı
+            xp += 40; // Her başarılı işlemde 40 XP kazan
+            
+            // KARAR YAPISI: Seviye atlama kontrolü
+            if (xp >= 100) {
+                seviye++;
+                xp = 0; // XP sıfırla
+                System.out.println("TEBRİKLER! Seviye Atladın. Yeni Seviye: " + seviye);
+                
+                // Enerji yenileme mantığı
+                enerji = 100;
+                System.out.println("Enerjin Fullendi.");
+            }
+
+            // KARAR YAPISI: Eğer enerji biterse döngü içinde dinlen
+            if (enerji <= 0) {
+                System.out.println("Karakter yorgun, dinleniliyor...");
+                enerji = 50; 
+            }
+        }
+        System.out.println("Hedef seviyeye ulaşıldı. Oyun bitti.");
+    }
+}
