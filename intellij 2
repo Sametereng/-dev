@@ -1,30 +1,29 @@
 public class TwitchModBot {
 
-    // METOT: Kullanıcıya ceza puanı veren fonksiyon
+    // yasaklı kelimeleri kullananlara yasaklayan bir döngü
     public static void cezaVer(String kullanici, int sure) {
         System.out.println("[MODERASYON]: " + kullanici + " adlı kullanıcı " + sure + " saniye susturuldu.");
     }
 
     public static void main(String[] args) {
-        // DEĞİŞKENLER: Mesaj ve yasaklı kelime listesi
+        // yasaklı kelimeler listesi
         String chatMesaji = "Bu oyun çok kötü, izlemiyorum!";
         String[] yasakliListe = {"kötü", "argo", "spam", "kavga"};
         String izleyici = "Yolcu_01";
         boolean ihlalVarMi = false;
 
-        // DÖNGÜ (For-Each): Mesajın içindeki her kelimeyi yasaklı listesiyle karşılaştır
+        // yazılanlarla yasaklı kelimeleri karşılaştırır
         for (String yasakli : yasakliListe) {
-            // KARAR YAPISI: String metodunu (contains) kullanarak kontrol et
             if (chatMesaji.toLowerCase().contains(yasakli)) {
                 ihlalVarMi = true;
-                break; // Bir tane bile yasaklı kelime bulsa döngüden çık (Performans artışı)
+                break;
             }
         }
 
-        // KARAR YAPISI: İhlal durumuna göre aksiyon al
+        // ihlal varsan 600sn/10dk ceza verir
         if (ihlalVarMi) {
             System.out.println("Hata: Mesajınız topluluk kurallarına aykırı!");
-            cezaVer(izleyici, 600); // 10 dakikalık ceza metodu çağrıldı
+            cezaVer(izleyici, 600);
         } else {
             System.out.println(izleyici + ": " + chatMesaji);
         }
