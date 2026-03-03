@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class OtoparkSistemi {
-    // METOT: Araç tipi ve süreye göre toplam tutarı hesaplar
+    // Araç tipi ve süreye göre toplam tutarı hesaplar
     public static double ucretHesapla(int tip, int saat) {
         double saatlikUcret;
 
-        // KARAR YAPISI (Switch): Araç tipine göre tarife belirleme
+        // araç tipine göre fiyat belirler
         switch (tip) {
             case 1: saatlikUcret = 15.0; break; // Binek
             case 2: saatlikUcret = 25.0; break; // Ticari
@@ -13,7 +13,7 @@ public class OtoparkSistemi {
             default: saatlikUcret = 20.0; break;
         }
 
-        // KARAR YAPISI (If): 5 saatten fazla kalana %20 indirim uygula
+        // 5 saaten fazla duranlara %20 indirim
         double toplam = saat * saatlikUcret;
         if (saat > 5) {
             toplam = toplam * 0.80; // %20 indirim
