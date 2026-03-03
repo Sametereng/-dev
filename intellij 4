@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class OtoparkSistemi {
+    // METOT: Araç tipi ve süreye göre toplam tutarı hesaplar
+    public static double ucretHesapla(int tip, int saat) {
+        double saatlikUcret;
+
+        // KARAR YAPISI (Switch): Araç tipine göre tarife belirleme
+        switch (tip) {
+            case 1: saatlikUcret = 15.0; break; // Binek
+            case 2: saatlikUcret = 25.0; break; // Ticari
+            case 3: saatlikUcret = 10.0; break; // Elektrikli (Teşvik indirimi)
+            default: saatlikUcret = 20.0; break;
+        }
+
+        // KARAR YAPISI (If): 5 saatten fazla kalana %20 indirim uygula
+        double toplam = saat * saatlikUcret;
+        if (saat > 5) {
+            toplam = toplam * 0.80; // %20 indirim
+        }
+        return toplam;
+    }
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        // DÖNGÜ (For): Sınıfta 2 farklı araç girişi yaparak deneme yapalım
+        for (int i = 1; i <= 2; i++) {
+            System.out.println("\n--- " + i + ". ARAÇ GİRİŞİ ---");
+            System.out.print("Araç Tipi (1:Binek, 2:Ticari, 3:Elektronik): ");
+            int aracTipi = input.nextInt();
+            
+            System.out.print("Kalınan Süre (Saat): ");
+            int sure = input.nextInt();
+
+            // METOT ÇAĞRISI
+            double sonuc = ucretHesapla(aracTipi, sure);
+            System.out.println("Ödenecek Tutar: " + sonuc + " TL");
+        }
+    }
+}
